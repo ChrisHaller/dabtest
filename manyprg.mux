@@ -1,0 +1,144 @@
+general {
+         dabmode 1
+         nbframes 0
+ }
+ remotecontrol { telnetport 0 }
+ ensemble {
+         id 0x4fff
+         ecc 0xec ; Extended Country Code
+
+         local-time-offset auto
+         international-table 1
+         label "Radio Monster"
+         shortlabel "Monster"
+}
+services {
+        	srv-p1 {label "80s80s Stories" }
+		srv-p2 {label "80s80s Mix" }
+		srv-p3 {label "80s80s Maxis" }
+		srv-p4 {label "80s80s Italo" }
+		srv-p5 {label "80s80s Christmas" }
+		srv-p6 {label "80s80s Web" }
+}
+subchannels {
+sub-p1 {
+                ; MPEG
+                type dabplus
+                bitrate 128
+                id 1
+                protection 2
+                inputfile "tcp://*:9001"
+                zmq-buffer 40
+                zmq-prebuffering 20
+        }
+
+
+sub-p2 {
+                ; MPEG
+                type dabplus
+                bitrate 128
+                id 2
+                protection 2
+                inputfile "tcp://*:9002"
+                zmq-buffer 40
+                zmq-prebuffering 20
+        }
+
+
+sub-p3 {
+                ; MPEG
+                type dabplus
+                bitrate 128
+                id 3
+                protection 2
+                inputfile "tcp://*:9003"
+                zmq-buffer 40
+                zmq-prebuffering 20
+        }
+
+
+sub-p4 {
+                ; MPEG
+                type dabplus
+                bitrate 128
+                id 4
+                protection 2
+                inputfile "tcp://*:9004"
+                zmq-buffer 40
+                zmq-prebuffering 20
+        }
+
+
+sub-p5 {
+                ; MPEG
+                type dabplus
+                bitrate 128
+                id 5
+                protection 2
+                inputfile "tcp://*:9005"
+                zmq-buffer 40
+                zmq-prebuffering 20
+        }
+
+
+sub-p6 {
+                ; MPEG
+                type dabplus
+                bitrate 128
+                id 6
+                protection 2
+                inputfile "tcp://*:9006"
+                zmq-buffer 40
+                zmq-prebuffering 20
+        }
+
+}
+
+ components {
+        comp-p1 {
+                label "80s80s Stories"
+                service srv-p1
+                subchannel sub-p1
+        }
+		
+		comp-p2 {
+                label "80s80s Mix"
+                service srv-p2
+                subchannel sub-p2
+        }
+		
+		comp-p3 {
+                label "80s80s Maxis"
+                service srv-p3
+                subchannel sub-p3
+        }
+		
+		comp-p4 {
+                label "80s80s Italo"
+                service srv-p4
+                subchannel sub-p4
+        }
+		
+		comp-p5 {
+                label "80s80s Christmas"
+                service srv-p5
+                subchannel sub-p5
+        }
+
+	comp-p6 {
+                label "80s80s Web"
+                service srv-p6
+                subchannel sub-p6
+        }
+
+ }
+
+
+outputs {
+    zeromq {
+        ; Listen on all interfaces, on port 9100
+        endpoint "tcp://*:9100"
+        allowmetadata true
+    }
+    throttle "simul://"
+}

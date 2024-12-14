@@ -1,0 +1,47 @@
+general {
+	 dabmode 1
+	 nbframes 0
+ }
+ remotecontrol { telnetport 0 }
+ ensemble {
+	 id 0x4fff
+	 ecc 0xec ; Extended Country Code
+
+	 local-time-offset auto
+	 international-table 1
+	 label "mmbtools"
+	 shortlabel "mmbtools"
+}
+services {
+	srv-p1 {label "Prog1" }
+}
+subchannels {
+sub-p1 {
+		; MPEG
+	        type dabplus
+        	bitrate 128
+        	id 1
+        	protection 2
+        
+        	inputfile "tcp://*:9001"
+        	zmq-buffer 40
+        	zmq-prebuffering 20
+	}
+}
+ components {
+	comp-p1 {
+		label Prog1
+		service srv-p1
+		subchannel sub-p1
+	}
+ }
+
+
+outputs {
+    zeromq {
+        ; Listen on all interfaces, on port 9100
+        endpoint "tcp://*:9100"
+        allowmetadata true
+    }
+    throttle "simul://"
+}

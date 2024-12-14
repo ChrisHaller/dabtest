@@ -1,0 +1,49 @@
+general {
+	 dabmode 1
+	 nbframes 5000
+ }
+ remotecontrol { telnetport 0 }
+ ensemble {
+	 id 0x4fff
+	 ecc 0xec ; Extended Country Code
+
+	 local-time-offset auto
+	 international-table 1
+	 label "mmbtools"
+	 shortlabel "mmbtools"
+}
+services {
+	srv-p1 {label "Prog1" }
+	srv-p2 {label "Prog2" }
+}
+subchannels {
+	sub-p1 {
+		; MPEG
+		type audio
+		inputfile "prog1.mp2"
+		bitrate 128
+		id 10
+		protection 5
+	}
+	sub-p2 {
+		type dabplus
+		inputfile "prog2.dabp"
+		bitrate 88
+		id 1
+		protection 1
+	}
+}
+ components {
+	comp-p1 {
+		label Prog1
+		service srv-p1
+		subchannel sub-p1
+	}
+	 comp-p2 {
+		label Prog2
+		service srv-p2
+		subchannel sub-p2
+	}
+ }
+outputs { output1 "file://myfirst.eti?type=raw" }
+

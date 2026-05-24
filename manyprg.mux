@@ -157,10 +157,20 @@ sub-p7 {
 
 
 outputs {
-    zeromq {
-        ; Listen on all interfaces, on port 9100
-        endpoint "tcp://*:9100"
-        allowmetadata true
+     edi {
+        ; Example EDI-over-TCP output
+        ; If TIST is enabled, requires leap-second information
+        destinations {
+            example_tcp {
+                protocol tcp
+                listenport 9100
+                ; (Optional) When a new client connects, it will receive a pre-roll burst of EDI data, so that it can quickly fill
+                ; its buffers. The value given is the duration of the pre-roll in seconds.
+                ; It makes sense to have a value slightly larger than tist-offset to ensure the destination will receive
+                ; data that will allow it to start transmitting immediately.
+                ;preroll-burst 2.0
+            }
+        }
     }
     throttle "simul://"
 }

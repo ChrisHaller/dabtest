@@ -11,6 +11,7 @@ general {
          international-table 1
          label "Radio Monster"
          shortlabel "Monster"
+	reconfig-counter hash
 }
 services {
         	srv-p1 {label "80s80s Stories" }
@@ -19,12 +20,13 @@ services {
 		srv-p4 {label "80s80s Italo" }
 		srv-p5 {label "80s80s Christmas" }
 		srv-p6 {label "80s80s Web" }
+		srv-p7 {label "SRF 3" }
 }
 subchannels {
 sub-p1 {
                 ; MPEG
                 type dabplus
-                bitrate 128
+                bitrate 120
                 id 1
                 protection 2
                 inputfile "tcp://*:9001"
@@ -36,7 +38,7 @@ sub-p1 {
 sub-p2 {
                 ; MPEG
                 type dabplus
-                bitrate 128
+                bitrate 120
                 id 2
                 protection 2
                 inputfile "tcp://*:9002"
@@ -48,7 +50,7 @@ sub-p2 {
 sub-p3 {
                 ; MPEG
                 type dabplus
-                bitrate 128
+                bitrate 120
                 id 3
                 protection 2
                 inputfile "tcp://*:9003"
@@ -60,7 +62,7 @@ sub-p3 {
 sub-p4 {
                 ; MPEG
                 type dabplus
-                bitrate 128
+                bitrate 120
                 id 4
                 protection 2
                 inputfile "tcp://*:9004"
@@ -72,7 +74,7 @@ sub-p4 {
 sub-p5 {
                 ; MPEG
                 type dabplus
-                bitrate 128
+                bitrate 120
                 id 5
                 protection 2
                 inputfile "tcp://*:9005"
@@ -84,10 +86,22 @@ sub-p5 {
 sub-p6 {
                 ; MPEG
                 type dabplus
-                bitrate 128
+                bitrate 120
                 id 6
                 protection 2
                 inputfile "tcp://*:9006"
+                zmq-buffer 40
+                zmq-prebuffering 20
+        }
+
+
+sub-p7 {
+                ; MPEG
+                type dabplus
+                bitrate 120
+                id 7
+                protection 2
+                inputfile "tcp://*:9007"
                 zmq-buffer 40
                 zmq-prebuffering 20
         }
@@ -130,6 +144,14 @@ sub-p6 {
                 service srv-p6
                 subchannel sub-p6
         }
+
+
+        comp-p7 {
+                label "SRF 3"
+                service srv-p7
+                subchannel sub-p7
+        }
+
 
  }
 

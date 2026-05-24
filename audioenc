@@ -1,0 +1,7 @@
+odr-audioenc -v https://streams.80s80s.de/popstories/mp3-192/streams.80s80s.de -b 120 -o tcp://localhost:9001 -r 48000 -c 2  -l  &
+odr-audioenc -v    https://streams.80s80s.de/mix/mp3-192/streams.80s80s.de -b 120 -o tcp://localhost:9002 -r 48000 -c 2   -l &
+odr-audioenc -v   https://streams.80s80s.de/maxis/mp3-192/streams.80s80s.de  -b 120 -o tcp://localhost:9003 -r 48000 -c 2   -l &
+odr-audioenc -v  https://streams.80s80s.de/italohits/mp3-192/streams.80s80s.de  -b 120 -o tcp://localhost:9004 -r 48000 -c 2  -l &
+odr-audioenc -v  https://streams.80s80s.de/christmas/aac-64/streams.80s80s.de   -b 120 -o tcp://localhost:9005 -r 48000 -c 2   -l &
+odr-audioenc -v  https://streams.80s80s.de/web/mp3-192/streams.80s80s.de   -b 120 -o tcp://localhost:9006 -r 48000 -c 2   -l 
+

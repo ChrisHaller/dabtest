@@ -18,6 +18,7 @@ sudo apt-get install --yes libboost-dev
 sudo apt-get install --yes libsoapysdr-dev
 sudo apt-get install --yes libfftw3-dev
 sudo apt install soapysdr-module-hackrf hackrf
+sudo apt install libsoapysdr-dev
 
 
 mkdir ~/odr
@@ -48,6 +49,17 @@ make
 sudo make install
 
 ```
+
+## for PlutoSDR instead of HackRF (optional)
+cd ~/odr
+git clone https://github.com/pothosware/SoapyPlutoSDR
+cd SoapyPlutoSDR
+mkdir build && cd build
+cmake ..
+make
+sudo make install
+sudo ldconfig
+
 
 ## Transmission
 
